@@ -92,7 +92,7 @@ class Page extends CActiveRecord
 	}
 	
 	
-	public function search($ownerId = null, $ownerClass = null)
+	public function search()
 	{
 		$criteria=new CDbCriteria;
 		$criteria->compare('id',$this->id);
@@ -101,8 +101,8 @@ class Page extends CActiveRecord
 		$criteria->compare('dateAdded',$this->dateAdded,true);
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
 		$criteria->compare('metaDesc',$this->metaDesc,true);
-		$criteria->compare('ownerId',($ownerId) ? $ownerId : 0);
-		$criteria->compare('ownerClass',($ownerClass) ? $ownerClass : $this->ownerClass,true);
+		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
 		$criteria->compare('annotation',$this->annotation,true);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('isActive',$this->isActive);

@@ -7,7 +7,7 @@
 <?php $this->widget('ext.selgridview.SelGridView', array(
 	'id'=>'page-grid',
 //	'dataProvider'=>$model->search($ownerId),
-	'dataProvider'=>$model->search(Yii::app()->controller->_ownerId, Yii::app()->controller->_ownerClass),
+	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'selectableRows' => 2,
 	'columns'=>array(

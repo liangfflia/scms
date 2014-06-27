@@ -35,6 +35,23 @@ class Block extends CActiveRecord
 		return '{{block}}';
 	}
 
+	
+    public function behaviors()
+	{
+        return array(
+            'positionBehavior' => array(
+                'class' => 'PositionBehavior',
+            ),
+            'ownerBehavior' => array(
+                'class' => 'OwnerBehavior',
+            ),
+            'dateBehavior' => array(
+                'class' => 'DateBehavior',
+            ),
+        );
+    }
+	
+	
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -101,8 +118,8 @@ class Block extends CActiveRecord
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('dateAdded',$this->dateAdded,true);
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
-		$criteria->compare('ownerId',$this->ownerId);
-		$criteria->compare('ownerClass',$this->ownerClass,true);
+		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
 		$criteria->compare('position',$this->position);
 		$criteria->compare('isActive',$this->isActive);
 

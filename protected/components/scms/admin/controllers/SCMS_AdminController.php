@@ -8,7 +8,9 @@ class SCMS_AdminController extends Controller
 		$modelAlias = null,
 		$delUrl,
 		$upUrl,
-		$downUrl;
+		$downUrl,
+		$_ownerId,
+		$_ownerClass;
 	
 	
 	protected 
@@ -17,9 +19,7 @@ class SCMS_AdminController extends Controller
 		$uploadFolder = 'tmp',
 			
 		$_redirectUrl,
-		$_ownersBreadcrumbs = array(),
-		$_ownerId,
-		$_ownerClass;
+		$_ownersBreadcrumbs = array();
 	
 
 	public function __construct($id, $module = null)
@@ -47,8 +47,8 @@ class SCMS_AdminController extends Controller
 	
 	protected function beforeAction($action)
 	{
-		$this->_ownerId = Yii::app()->request->getParam('owner');
-		$this->_ownerClass = Yii::app()->request->getParam('owner_class');
+		$this->_ownerId = Yii::app()->request->getParam('owner') ? Yii::app()->request->getParam('owner') : 0;
+		$this->_ownerClass = Yii::app()->request->getParam('owner_class') ? Yii::app()->request->getParam('owner_class') : NULL;
 		$this->_redirectUrl = '/admin/'.str_replace('controller','', strtolower(get_class($this)));
 		if($this->_ownerId)
 			$this->_redirectUrl .= '/index/owner/'.$this->_ownerId;

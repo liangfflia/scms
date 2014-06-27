@@ -3,6 +3,24 @@
 class OwnerBehavior extends CActiveRecordBehavior
 {
 	
+	public function beforeSave()
+	{
+		$owner = $this->getOwner();
+		if($owner->hasAttribute('ownerId'))
+		{
+			if(Yii::app()->controller->_ownerId);
+				$owner->ownerId = Yii::app()->controller->_ownerId;
+		}
+		if($owner->hasAttribute('ownerClass'))
+		{
+			if(Yii::app()->controller->_ownerClass)
+				$owner->ownerClass = Yii::app()->controller->_ownerClass;
+		}
+		
+		return true;
+	}
+	
+	
 	// Used for viewing admin list elements
 	public function getOwnerGridList()
 	{

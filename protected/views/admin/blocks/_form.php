@@ -17,13 +17,10 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<?SHtml::textfield($form, $model, 'title', 127)?>
+	<?SHtml::textfield($form, $model, 'alias', 127)?>
+	<?SHtml::textfield($form, $model, 'position', 127)?>
 
-	<div class="row">
-		<label>Category</label>
-		<?=$form->dropDownList($model, 'ownerClass', Category::model()->getOwnerFormList())?>
-	</div>
-		
-	<?SHtml::textarea($form, $model, 'description', 500)?>
+	<?SHtml::textarea($form, $model, 'text', 500)?>
 	
 	<?SHtml::checkbox($form, $model, 'isActive')?>
 	
