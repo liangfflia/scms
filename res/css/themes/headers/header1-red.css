@@ -1,0 +1,97 @@
+/*Menu
+------------------------------------*/
+/*Navbar*/
+.header .navbar-default .navbar-nav > .active > a {
+	color: #e74c3c;
+}
+
+/*Navber Toggle*/
+.navbar-toggle,
+.navbar-default .navbar-toggle:hover, 
+.navbar-default .navbar-toggle:focus {
+	background: #e74c3c;
+}
+
+.navbar-toggle:hover {
+	background: #c0392b !important;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: #c0392b;
+}
+
+/*Serach Box*/
+.header .navbar .nav > li > a.search:hover {
+	color: #e74c3c;
+	border-bottom-color: #e74c3c;
+}
+
+/*START MENU CUSTOMIZATION*/
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  	color:#e74c3c;
+	border-bottom:solid 2px #e74c3c;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:focus {
+  	color:#e74c3c;
+  	text-decoration:none;
+	border-bottom:solid 2px #e74c3c;
+  	background:none;	
+  	-webkit-box-shadow:none;
+       -moz-box-shadow:none;
+          	box-shadow:none;
+}
+
+.navbar .nav > .active > a:hover {	
+  	color:#e74c3c;	
+	background:none;		
+	border-bottom:solid 2px #333;
+  	-webkit-box-shadow:none;
+       -moz-box-shadow:none;
+          	box-shadow:none;
+}
+
+.navbar .btn-navbar {
+	padding:10px 15px;
+	margin-top:1px;
+	margin-right:0;
+	background:#e74c3c;
+	border:none !important;	
+}
+/*Arrow*/
+.navbar .nav > li > a .caret {
+  margin:9px 0 0 3px !important;	
+  border-top-color: #e74c3c!important;	
+  border-bottom-color: #e74c3c !important;
+}
+/*Arrow after*/
+.navbar .nav > li > .dropdown-menu:after {
+	left:19px;
+	border-top-color: #e74c3c !important;
+	border-bottom-color: #e74c3c !important;
+}
+/*END MENU CUSTOMIZATION*/
+
+/*Responsive @Media 
+------------------------------------*/
+@media (min-width: 767px) {
+	/*Navbar*/
+	.header .navbar-default .navbar-nav > li > a:hover,
+	.header .navbar-default .navbar-nav > .active > a {
+		border-bottom: solid 2px #e74c3c;
+	}
+
+	.header .navbar-default .navbar-nav > .open > a,
+	.header .navbar-default .navbar-nav > .open > a:hover,
+	.header .navbar-default .navbar-nav > .open > a:focus {
+		color: #e74c3c;
+	}
+
+	/*Dropdown Menu*/
+	.header .dropdown-menu { 
+		border-top: solid 2px #e74c3c; 
+	}
+
+}

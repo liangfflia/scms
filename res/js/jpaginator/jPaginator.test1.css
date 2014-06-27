@@ -1,0 +1,78 @@
+	
+	#test1 {
+		height:40px;
+	}
+	#test1_o_left {
+    /*width:22px; height:15px;*/
+    width:36px; height:36px;
+    float:left;
+    /*background:url(img/btn_precedent.bmp);*/
+    background:url(img/btn_precedent_max.png);
+	opacity: 0.4;
+    margin:4px 4px 0 0;
+	}
+	#test1_o_right {
+    /*width:22px; height:15px;*/
+    width:36px; height:36px;
+    float:left;
+    /*background:url(img/btn_suivant.bmp);*/
+    background:url(img/btn_suivant_max.png);
+	opacity: 0.4;
+    margin:4px 0 0 4px;
+	}
+	#test1_m_left {
+    cursor:pointer;
+    /*width:22px; height:15px;*/
+    width:36px; height:36px;
+    float:left;
+    background:url(img/btn_precedent_max.png);
+	opacity: 0.8;
+    margin:4px 2px 0 0;
+	}
+	#test1_m_right {
+    cursor:pointer;
+    /*width:22px; height:15px;*/
+    width:36px; height:36px;
+    float:left;
+    background:url(img/btn_suivant_max.png);
+	opacity: 0.8;
+    margin:4px 0 0 2px;
+	}
+	/* must set border width with px */
+	#test1 .paginator_p {
+	  width:25px;
+		/*height:18px;*/
+		height:23px;
+		font-weight:bold;
+		/*color: #007edf;*/
+		color: #555555;
+		background-color:transparent;
+		border:none;
+		padding:3px 0 2px 0;
+	} 
+	#test1 .paginator_p_bloc {
+	}
+/*	#test1 .paginator_p:hover {
+		color:white;
+		background-color:#25a29e;
+		background-color:#72C02C;
+	}
+	#test1 .paginator_p.selected {
+		color:white;
+		background-color:#72C02C;
+	}*/
+	#test1 .paginator_slider {
+		/*background-color:#f2d21b;*/
+		background-color:#CCC;
+		/*left:50px;*/
+		left:-12px;
+		top: 8px;
+	}
+	#test1 .paginator_slider .ui-slider-handle {
+		width: 20px;
+		height: 12px;
+		/*top: -4px;*/
+		top: -6px;
+		background-color:#f18fa8;
+		border: solid 1px black ;
+	}

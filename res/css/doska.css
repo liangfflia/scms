@@ -1,0 +1,182 @@
+.rst-ocb
+{
+	clear: both;
+	position: relative;
+}
+.rst-ocb-i-a
+{
+	position: relative;
+	text-decoration: none;
+}
+.rst-ocb-i-i
+{
+	float: left;
+	/*height: 100px;*/
+	margin: 3px 0;
+	width: 120px;
+}
+.rst-ocb-i-d
+{
+	height: 90px;
+	margin-left: 125px;
+	overflow: hidden;
+	width: 363px;
+}
+.rst-ocb-i-d-l
+{
+	font-size: 90%;
+	height: 45px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.rst-ocb-i-d-l-i
+{
+	float: left;
+	margin-right: 5px;
+	white-space: nowrap;
+}
+.rst-ocb-i-d-l-i-s
+{
+	font-weight: bold;
+}
+.rst-ocb-i-d-l-i-b
+{
+	font-weight: bold;
+}
+.rst-ocb-i-d-d
+{
+	clear: both;
+	color: #aaa;
+	font-size: 80%;
+	font-size: 85%;
+	line-height: 14px;
+	width: auto;
+}
+
+/*NEXT*/
+
+.rst-ocb-i-d-e
+{
+	float: right;
+	font-size: 80%;
+	margin-left: 10px;
+	position: relative;
+	top: 0;
+	width: 161px;
+	z-index: 11;
+}
+.rst-ocb-i-premium .rst-ocb-i-d-e
+{
+	width: 143px;
+}
+.rst-ocb-i-d-e .rst-ocb-i-d-e-a,.rst-ocb-i-d-e .rst-ocb-i-d-e-e
+{
+	color: #555;
+	font-size: 110%;
+}
+.rst-ocb-i-premium .rst-ocb-i-d-e .rst-ocb-i-d-e-a,.rst-ocb-i-premium .rst-ocb-i-d-e .rst-ocb-i-d-e-e
+{
+	font-size: 100%;
+}
+.rst-ocb-i-saled .rst-ocb-i-d-e .rst-ocb-i-d-e-a,.rst-ocb-i-archive .rst-ocb-i-d-e .rst-ocb-i-d-e-a,.rst-ocb-i-saled .rst-ocb-i-d-e .rst-ocb-i-d-e-e,.rst-ocb-i-archive .rst-ocb-i-d-e .rst-ocb-i-d-e-e
+{
+	color: #00E;
+}
+.rst-ocb-i-saled .rst-ocb-i-a,.rst-ocb-i-archive .rst-ocb-i-a
+{
+	color: #555;
+}
+
+.rst-ocb-i-i
+{
+	background-color: #EEE;
+	border-radius: 3px;
+	float: left;
+	/*height: 150px;*/
+	margin: 0;
+	width: 200px;
+}
+.rst-ocb-i-d
+{
+	height: 105px;
+	margin-left: 208px;
+	width: 504px;
+	width: auto;
+}
+.rst-ocb-i-d-l
+{
+	border-bottom: dotted 1px #EEE;
+	font-size: 104%;
+	height: 65px;
+	margin-bottom: 4px;
+	padding-bottom: 4px;
+}
+
+.rst-ocb-i-a:hover .rst-ocb-i-h
+{
+	text-decoration: underline;
+}
+.rst-ocb-i-d-l-j,.rst-ocb-i-d-l-i
+{
+	color: #888;
+	float: left;
+	height: 21px;
+	line-height: 21px;
+	width: 280px;
+}
+.rst-ocb-i-d-l-j
+{
+	overflow: hidden;
+	white-space: nowrap;
+	width: 220px;
+}
+.rst-ocb-i-d-l-i-b,.rst-ocb-i-d-l-i-s
+{
+	color: #000;
+}
+.rst-ocb-i-d-l-i-s-p
+{
+	color: #900;
+	font-size: 140%;
+}
+.rst-ocb-i-d-d
+{
+	clear: none;
+	color: #888;
+	float: left;
+	font-size: 80%;
+	width: 335px!important;
+}
+.rst-ocb-i
+{
+	border: solid 1px #CCC;
+	border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 7px 7px 11px;
+}
+.rst-ocb-i-premium
+{
+	border: solid 2px #fc6;
+	margin-bottom: 5px;
+	padding: 6px 6px 10px;
+}
+.rst-ocb-i-premium .rst-ocb-i-d
+{
+	width: auto;
+}
+.rst-ocb-i-d-e
+{
+	line-height: 16px;
+	position: relative;
+	top: -2px;
+}
+#rst-oldcars-exchange-table .rst-uix-input-new
+{
+	width: 97%;
+}
+.rst-ocb-i .rst-ocb-i-d
+{
+	width: 508px;
+}

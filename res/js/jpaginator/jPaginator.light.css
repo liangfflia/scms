@@ -1,0 +1,8 @@
+#test1 .paginator_p:hover {
+	color:white;
+	background-color:#888;
+}
+#test1 .paginator_p.selected {
+	color:white;
+	background-color:#888;
+}
