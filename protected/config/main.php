@@ -63,10 +63,10 @@ return array(
 //		),
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=yii-pics',
+			'connectionString' => 'mysql:host=localhost;dbname=scms',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => '7777777',
 			'charset' => 'utf8',
 			'tablePrefix' => 'tbl_',
 		),

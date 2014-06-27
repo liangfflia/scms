@@ -22,8 +22,6 @@ class BHorizontalMenu extends CWidget
 
     public function run()
     {
-        $current_route = '/' . $this->controller->module->id . '/' . $this->controller->id . '/' . $this->controller->action->id;
-//		CVarDumper::dump($this->items,10,true); exit;
         echo '<ul class="', $this->class, '" style="', $this->style, '">';
         foreach ($this->items as $item)
 		{

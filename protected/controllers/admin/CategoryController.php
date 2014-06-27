@@ -1,6 +1,6 @@
 <?php
 
-namespace application\controllers\admin;
+//namespace application\controllers\admin;
 
 class CategoryController extends S_AdminController
 {

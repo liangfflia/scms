@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.2.3
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Апр 30 2014 г., 21:00
--- Версия сервера: 5.5.31
--- Версия PHP: 5.3.10-1ubuntu3
+-- Host: localhost
+-- Generation Time: Jun 27, 2014 at 11:38 AM
+-- Server version: 5.1.40
+-- PHP Version: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,41 +16,42 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `yii-pics`
+-- Database: `yii-pics`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_category`
+-- Table structure for table `tbl_category`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ownerClass` varchar(63) NOT NULL,
   `ownerId` int(11) NOT NULL DEFAULT '0',
+  `level` int(11) NOT NULL DEFAULT '1',
   `title` varchar(127) NOT NULL,
   `description` varchar(500) NOT NULL,
   `dateAdded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `tbl_category`
+-- Dumping data for table `tbl_category`
 --
 
-INSERT INTO `tbl_category` (`id`, `ownerClass`, `ownerId`, `title`, `description`, `dateAdded`, `isActive`, `position`) VALUES
-(8, 'Photo', 0, 'Демотиваторы', '', '2013-12-23 14:07:24', 1, 2),
-(9, 'News', 0, 'Тест', '', '2013-12-23 14:32:45', 1, 3),
-(7, 'Photo', 0, 'Обои', '', '2013-12-23 14:07:16', 1, 1),
-(10, 'Articles', 0, 'Ремонт', '', '2014-03-12 17:59:48', 1, 4);
+INSERT INTO `tbl_category` (`id`, `ownerClass`, `ownerId`, `level`, `title`, `description`, `dateAdded`, `isActive`, `position`) VALUES
+(8, 'Photo', 0, 1, 'Демотиваторы', '', '2013-12-23 16:07:24', 1, 2),
+(9, 'News', 0, 1, 'Тест', '', '2013-12-23 16:32:45', 1, 4),
+(7, 'Photo', 0, 1, 'Обои', '', '2013-12-23 16:07:16', 1, 1),
+(10, 'Articles', 0, 1, 'Ремонт', '', '2014-03-12 19:59:48', 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_city`
+-- Table structure for table `tbl_city`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_city` (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tbl_city` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=702 ;
 
 --
--- Дамп данных таблицы `tbl_city`
+-- Dumping data for table `tbl_city`
 --
 
 INSERT INTO `tbl_city` (`id`, `countyId`, `title`) VALUES
@@ -771,7 +771,7 @@ INSERT INTO `tbl_city` (`id`, `countyId`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_comments`
+-- Table structure for table `tbl_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_comments` (
@@ -786,21 +786,29 @@ CREATE TABLE IF NOT EXISTS `tbl_comments` (
   `isActive` tinyint(1) NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
--- Дамп данных таблицы `tbl_comments`
+-- Dumping data for table `tbl_comments`
 --
 
 INSERT INTO `tbl_comments` (`id`, `ownerClass`, `ownerId`, `status`, `user`, `email`, `dateAdded`, `text`, `isActive`, `position`) VALUES
-(16, 'News', 198, 1, 'egweg', '', '2013-12-18 12:56:38', 'wegw', 1, 0),
-(15, 'News', 198, 1, 'aqaq', '', '2013-12-18 12:55:27', 'wgweg', 1, 0),
-(14, 'News', 198, 1, 'admin', '', '2013-12-16 14:31:58', 'fs', 1, 0);
+(16, 'News', 198, 1, 'egweg', '', '2013-12-18 14:56:38', 'wegw', 1, 0),
+(15, 'News', 198, 1, 'aqaq', '', '2013-12-18 14:55:27', 'wgweg', 1, 0),
+(14, 'News', 198, 1, 'admin', '', '2013-12-16 16:31:58', 'fs', 1, 0),
+(18, '', 0, 0, 'ss', '', '2014-06-15 21:33:05', 'ssssssss', 0, 0),
+(19, '', 0, 0, 'ss', '', '2014-06-15 21:33:08', 'sssssss', 0, 0),
+(20, '', 0, 0, 'sssss', '', '2014-06-15 21:33:11', 'ssssssss', 0, 0),
+(21, '', 0, 0, 'sssss', '', '2014-06-15 21:33:15', 'ssssssss', 0, 0),
+(22, '', 0, 0, 'ssss', '', '2014-06-15 21:33:18', 'ssssssss', 0, 0),
+(23, '', 0, 0, 'ssss', '', '2014-06-15 21:33:21', 'sssss', 0, 0),
+(24, '', 0, 0, 'sssss', '', '2014-06-15 21:33:27', 'ssssss', 0, 0),
+(25, '', 0, 0, 'ssss', '', '2014-06-15 21:33:30', 'sssssss', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_county`
+-- Table structure for table `tbl_county`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_county` (
@@ -810,7 +818,7 @@ CREATE TABLE IF NOT EXISTS `tbl_county` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
--- Дамп данных таблицы `tbl_county`
+-- Dumping data for table `tbl_county`
 --
 
 INSERT INTO `tbl_county` (`id`, `title`) VALUES
@@ -843,7 +851,7 @@ INSERT INTO `tbl_county` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_fav_menu`
+-- Table structure for table `tbl_fav_menu`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_fav_menu` (
@@ -858,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fav_menu` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `tbl_fav_menu`
+-- Dumping data for table `tbl_fav_menu`
 --
 
 INSERT INTO `tbl_fav_menu` (`id`, `title`, `alias`, `stdField`, `fields`, `position`, `isActive`) VALUES
@@ -870,7 +878,7 @@ INSERT INTO `tbl_fav_menu` (`id`, `title`, `alias`, `stdField`, `fields`, `posit
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_manager`
+-- Table structure for table `tbl_manager`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_manager` (
@@ -881,10 +889,10 @@ CREATE TABLE IF NOT EXISTS `tbl_manager` (
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   `position` int(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
--- Дамп данных таблицы `tbl_manager`
+-- Dumping data for table `tbl_manager`
 --
 
 INSERT INTO `tbl_manager` (`id`, `title`, `alias`, `group`, `isActive`, `position`) VALUES
@@ -898,7 +906,7 @@ INSERT INTO `tbl_manager` (`id`, `title`, `alias`, `group`, `isActive`, `positio
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_menu`
+-- Table structure for table `tbl_menu`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_menu` (
@@ -911,7 +919,7 @@ CREATE TABLE IF NOT EXISTS `tbl_menu` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
 
 --
--- Дамп данных таблицы `tbl_menu`
+-- Dumping data for table `tbl_menu`
 --
 
 INSERT INTO `tbl_menu` (`id`, `title`, `url`, `position`, `isVisible`) VALUES
@@ -923,37 +931,52 @@ INSERT INTO `tbl_menu` (`id`, `title`, `url`, `position`, `isVisible`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_page`
+-- Table structure for table `tbl_page`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `alias` varchar(127) COLLATE utf8_unicode_ci NOT NULL,
+  `view` varchar(63) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dateAdded` timestamp NULL DEFAULT NULL,
   `dateUpdated` timestamp NULL DEFAULT NULL,
+  `metaTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `metaDesc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ownerId` int(11) DEFAULT NULL,
+  `metaKeywords` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ownerId` int(11) DEFAULT '0',
   `ownerClass` varchar(63) COLLATE utf8_unicode_ci DEFAULT NULL,
   `annotation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `text` text COLLATE utf8_unicode_ci NOT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
--- Дамп данных таблицы `tbl_page`
+-- Dumping data for table `tbl_page`
 --
 
-INSERT INTO `tbl_page` (`id`, `title`, `alias`, `dateAdded`, `dateUpdated`, `metaDesc`, `ownerId`, `ownerClass`, `annotation`, `text`, `isActive`) VALUES
-(1, 'asd', 'asd', NULL, NULL, '', NULL, NULL, '', '<span class="redactor_placeholder" data-redactor="verified" contenteditable="false">Контент</span>', 1),
-(3, 'as', 'qqqqq', NULL, NULL, '', NULL, NULL, '', '<span class="redactor_placeholder" data-redactor="verified" contenteditable="false">Контент</span>', 1);
+INSERT INTO `tbl_page` (`id`, `title`, `alias`, `view`, `dateAdded`, `dateUpdated`, `metaTitle`, `metaDesc`, `metaKeywords`, `ownerId`, `ownerClass`, `annotation`, `text`, `isActive`) VALUES
+(1, 'asd', 'asd', NULL, '2014-06-26 22:28:44', NULL, NULL, '', NULL, 0, NULL, '', '<span class="redactor_placeholder" data-redactor="verified" contenteditable="false">Контент</span>', 1),
+(3, 'as', 'qqqqq', NULL, '2014-06-26 22:28:51', NULL, NULL, '', NULL, 0, NULL, '', '<span class="redactor_placeholder" data-redactor="verified" contenteditable="false">Контент</span>', 1),
+(4, 'тестовая', 'test-page', NULL, '2014-06-26 22:28:55', NULL, NULL, '', NULL, 0, NULL, '', '<p><span class="redactor_placeholder" data-redactor="verified" contenteditable="false">Контент</span></p>', 1),
+(5, 'test33', 'aaaaaa', NULL, '2014-06-16 00:13:28', '2014-06-16 00:13:28', NULL, NULL, NULL, 1, NULL, NULL, '', 1),
+(8, 'тест', 'тест', NULL, NULL, NULL, NULL, '', NULL, 5, NULL, '', '<p>тест</p>', 1),
+(9, 'ттттттт', 'тттттттттт', NULL, NULL, NULL, NULL, 'тттттттттт', NULL, 8, NULL, 'ттттттт', '<p>тттттттт</p>', 1),
+(12, 'aa', 'aaaaaaa', NULL, NULL, NULL, NULL, 'aaaaa', NULL, 8, NULL, '', '<p>a</p>', 1),
+(19, 'ge', 'ge', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>fdfn</p>', 1),
+(20, 'reh', 'hre', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>reh</p>', 1),
+(21, 'reh', 'erh', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>reh</p>', 1),
+(22, 'hreh', 'hrer', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>her</p>', 1),
+(23, 'reh', 'rhe', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>e</p>', 1),
+(27, 'qrq', 'dfhdfh', NULL, NULL, NULL, NULL, '', NULL, 8, NULL, '', '<p>dfh</p>', 1),
+(28, 'asfg', 'gqqgnb', NULL, NULL, NULL, NULL, '', NULL, 3, NULL, '', '<p>f</p>', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_photo`
+-- Table structure for table `tbl_photo`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_photo` (
@@ -968,7 +991,7 @@ CREATE TABLE IF NOT EXISTS `tbl_photo` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
--- Дамп данных таблицы `tbl_photo`
+-- Dumping data for table `tbl_photo`
 --
 
 INSERT INTO `tbl_photo` (`id`, `title`, `catId`, `src`, `thumb`, `text`, `isActive`) VALUES
@@ -982,7 +1005,7 @@ INSERT INTO `tbl_photo` (`id`, `title`, `catId`, `src`, `thumb`, `text`, `isActi
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_rate_news`
+-- Table structure for table `tbl_rate_news`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_rate_news` (
@@ -993,7 +1016,7 @@ CREATE TABLE IF NOT EXISTS `tbl_rate_news` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `tbl_rate_news`
+-- Dumping data for table `tbl_rate_news`
 --
 
 INSERT INTO `tbl_rate_news` (`newsId`, `positive`, `negative`) VALUES
@@ -1011,7 +1034,7 @@ INSERT INTO `tbl_rate_news` (`newsId`, `positive`, `negative`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_resources`
+-- Table structure for table `tbl_resources`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_resources` (
@@ -1026,19 +1049,19 @@ CREATE TABLE IF NOT EXISTS `tbl_resources` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Дамп данных таблицы `tbl_resources`
+-- Dumping data for table `tbl_resources`
 --
 
 INSERT INTO `tbl_resources` (`id`, `ownerId`, `ownerClass`, `source`, `dateAdded`, `dateUpdated`, `isActive`) VALUES
-(16, 30, '3', 'files/autoboard/thumbs/52d92c1a3a23f.jpg', '2014-01-17 13:11:54', '0000-00-00 00:00:00', 1),
-(15, 29, '3', 'files/autoboard/thumbs/52d92b1771ffe.png', '2014-01-17 13:07:35', '0000-00-00 00:00:00', 1),
-(14, 28, '3', 'NULL', '2014-01-17 12:47:00', '0000-00-00 00:00:00', 1),
-(13, 27, '3', 'files/autoboard/thumbs/52d821647de29.png', '2014-01-16 18:13:56', '0000-00-00 00:00:00', 1);
+(16, 30, '3', 'files/autoboard/thumbs/52d92c1a3a23f.jpg', '2014-01-17 15:11:54', '0000-00-00 00:00:00', 1),
+(15, 29, '3', 'files/autoboard/thumbs/52d92b1771ffe.png', '2014-01-17 15:07:35', '0000-00-00 00:00:00', 1),
+(14, 28, '3', 'NULL', '2014-01-17 14:47:00', '0000-00-00 00:00:00', 1),
+(13, 27, '3', 'files/autoboard/thumbs/52d821647de29.png', '2014-01-16 20:13:56', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_resource_classes`
+-- Table structure for table `tbl_resource_classes`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_resource_classes` (
@@ -1048,7 +1071,7 @@ CREATE TABLE IF NOT EXISTS `tbl_resource_classes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `tbl_resource_classes`
+-- Dumping data for table `tbl_resource_classes`
 --
 
 INSERT INTO `tbl_resource_classes` (`id`, `title`) VALUES
@@ -1057,7 +1080,7 @@ INSERT INTO `tbl_resource_classes` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_settings`
+-- Table structure for table `tbl_settings`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_settings` (
@@ -1070,7 +1093,7 @@ CREATE TABLE IF NOT EXISTS `tbl_settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `tbl_settings`
+-- Dumping data for table `tbl_settings`
 --
 
 INSERT INTO `tbl_settings` (`id`, `group`, `alias`, `title`, `value`) VALUES
@@ -1080,7 +1103,7 @@ INSERT INTO `tbl_settings` (`id`, `group`, `alias`, `title`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_submenu`
+-- Table structure for table `tbl_submenu`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_submenu` (
@@ -1093,10 +1116,15 @@ CREATE TABLE IF NOT EXISTS `tbl_submenu` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
+--
+-- Dumping data for table `tbl_submenu`
+--
+
+
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_user`
+-- Table structure for table `tbl_user`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user` (
@@ -1119,21 +1147,21 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
--- Дамп данных таблицы `tbl_user`
+-- Dumping data for table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `login`, `email`, `password`, `role`, `firstName`, `lastName`, `middleName`, `countryId`, `cityId`, `address`, `zip`, `dateAdded`, `dateUpdated`) VALUES
-(1, 'admin', 'test@test.com', 'adpexzg3FUZAk', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2013-12-10 16:51:49', '0000-00-00 00:00:00'),
-(2, 'test', 'aaa@aaa.com', 'teH0wLIpW0gyQ', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2013-12-11 17:20:51', '0000-00-00 00:00:00'),
-(18, 'slavke', 'slavutych@list.ru', '12IbR.gJ8wcpc', 3, 'v', 'k', NULL, NULL, NULL, NULL, NULL, '2014-03-17 15:52:47', '0000-00-00 00:00:00'),
-(19, 'Slavutych', 'asdas@asda2.com', '$1$i72.Do5.$qgi5UVHtFU3zOku7PAuQq.', 3, 'slavik', 'konovalenko', NULL, NULL, NULL, NULL, NULL, '2014-03-17 23:31:56', '2014-03-22 19:29:32'),
-(20, 'slavik1', 'slavke@mail.ru', '77XJfY1ekq/8k', 3, 'slavik', 'ko', NULL, NULL, NULL, NULL, NULL, '2014-03-19 01:27:09', '0000-00-00 00:00:00'),
-(21, 'slavke2', 'slavke@mail.ru', '74FzVyRCSZfhM', 3, 'slavik', 'ko', NULL, NULL, NULL, NULL, NULL, '2014-03-22 19:34:08', '2014-03-22 19:38:14');
+(1, 'admin', 'test@test.com', 'adpexzg3FUZAk', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2013-12-10 18:51:49', '0000-00-00 00:00:00'),
+(2, 'test', 'aaa@aaa.com', 'teH0wLIpW0gyQ', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2013-12-11 19:20:51', '0000-00-00 00:00:00'),
+(18, 'slavke', 'slavutych@list.ru', '12IbR.gJ8wcpc', 3, 'v', 'k', NULL, NULL, NULL, NULL, NULL, '2014-03-17 17:52:47', '0000-00-00 00:00:00'),
+(19, 'Slavutych', 'asdas@asda2.com', '$1$i72.Do5.$qgi5UVHtFU3zOku7PAuQq.', 3, 'slavik', 'konovalenko', NULL, NULL, NULL, NULL, NULL, '2014-03-18 01:31:56', '2014-03-22 21:29:32'),
+(20, 'slavik1', 'slavke@mail.ru', '77XJfY1ekq/8k', 3, 'slavik', 'ko', NULL, NULL, NULL, NULL, NULL, '2014-03-19 03:27:09', '0000-00-00 00:00:00'),
+(21, 'slavke2', 'slavke@mail.ru', '74FzVyRCSZfhM', 3, 'slavik', 'ko', NULL, NULL, NULL, NULL, NULL, '2014-03-22 21:34:08', '2014-03-22 21:38:14');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_user_fav`
+-- Table structure for table `tbl_user_fav`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user_fav` (
@@ -1146,7 +1174,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_fav` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `tbl_user_fav`
+-- Dumping data for table `tbl_user_fav`
 --
 
 INSERT INTO `tbl_user_fav` (`id`, `ownerClass`, `userId`, `itemId`, `dateAdded`) VALUES
@@ -1156,7 +1184,7 @@ INSERT INTO `tbl_user_fav` (`id`, `ownerClass`, `userId`, `itemId`, `dateAdded`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_user_role`
+-- Table structure for table `tbl_user_role`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user_role` (
@@ -1166,7 +1194,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_role` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `tbl_user_role`
+-- Dumping data for table `tbl_user_role`
 --
 
 INSERT INTO `tbl_user_role` (`id`, `title`) VALUES
@@ -1177,7 +1205,7 @@ INSERT INTO `tbl_user_role` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_user_status`
+-- Table structure for table `tbl_user_status`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user_status` (
@@ -1186,6 +1214,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Dumping data for table `tbl_user_status`
+--
+

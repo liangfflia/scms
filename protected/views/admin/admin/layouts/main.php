@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/res/admin/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="/res/admin/css/print.css" media="print" />
 	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?=$this->module->assetsUrl?>/css/ie.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?//=$this->module->assetsUrl?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
 	<link rel="stylesheet" type="text/css" href="/res/admin/css/main.css" />
@@ -26,12 +26,6 @@
 	
 	<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 	<?php Yii::app()->clientScript->registerScriptFile('/res/admin/bootstrap/js/bootstrap.js'); ?>
-    
-	
-        <?if($this->module->name == 'news'): ?>
-        <script type="text/javascript" src="/res/js/main.js"></script>  
-        <link rel="stylesheet" type="text/css" href="<?=$this->module->submoduleAssetsUrl ?>/css/main.css" />
-        <?endif;?>
 	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>

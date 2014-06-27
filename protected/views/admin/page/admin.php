@@ -13,7 +13,7 @@
 <?=Yii::app()->controller->getOwnBreadcrumbs()?>
 </div>
 	
-<?$this->renderPartial('_grid', array('model'=>$model, 'ownerId'=>$ownerId));?>
+<?$this->renderPartial('_grid', array('model'=>$model));?>
 
 <div>
     <? SHtml::button('del'); ?>
