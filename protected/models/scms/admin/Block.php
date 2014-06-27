@@ -17,6 +17,9 @@
  */
 class Block extends CActiveRecord
 {
+	
+	public $subblock;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -50,6 +53,24 @@ class Block extends CActiveRecord
             ),
         );
     }
+	
+	
+	public function getOwnersCount()
+	{
+		return Block::model()->countByAttributes(array('ownerId'=>$this->id));
+	}
+	
+	
+	public function getBlocksCount()
+	{
+		return Block::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Block'));
+	}
+	
+	
+	public function getAdminOwnerLink()
+	{
+		echo '<a style="font-size: 18px;" href="/admin/blocks/index/owner/'.$this->id.'">[ '.$this->getOwnersCount().' ]</a>';
+	}
 	
 	
 	/**

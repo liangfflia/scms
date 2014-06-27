@@ -17,6 +17,10 @@
 		'id',
 		'title',
 		SGrid::dateAdded(),
+		array(
+			'name' => 'subblock',
+			'value' => '$data->getAdminOwnerLink()'
+		),
 		SGrid::isActive(),
 		array(
 			'class'=>'AdminButtonColumn',

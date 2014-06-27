@@ -10,7 +10,7 @@
 </div>
 
 <div style="margin-top: 20px; font-size: 17px;">
-<?=Yii::app()->controller->getOwnBreadcrumbs()?>
+	<?=Yii::app()->controller->getOwnBreadcrumbs()?>
 </div>
 	
 <?$this->renderPartial('_grid', array('model'=>$model));?>
