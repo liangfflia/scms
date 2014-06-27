@@ -3,7 +3,9 @@
 class Page extends CActiveRecord
 {
 	
-	public $subpage;
+	public 
+		$subpage,
+		$block;
 	
 	
 	public static function model($className=__CLASS__)
@@ -72,9 +74,21 @@ class Page extends CActiveRecord
 	}
 	
 	
+	public function getBlocksCount()
+	{
+		return Block::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Page'));
+	}
+	
+	
 	public function getAdminOwnerLink()
 	{
 		echo '<a style="font-size: 18px;" href="/admin/page/index/owner/'.$this->id.'">[ '.$this->getOwnersCount().' ]</a>';
+	}
+	
+	
+	public function getAdminOwnerBlock()
+	{
+		echo '<a style="font-size: 18px;" href="/admin/blocks/index/owner/'.$this->id.'/owner_class/page">[ '.$this->getBlocksCount().' ]</a>';
 	}
 	
 	

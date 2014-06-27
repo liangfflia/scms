@@ -92,7 +92,7 @@ class Manager extends CActiveRecord
 	
 	static public function showMenu()
 	{
-		$adminMenu = self::model()->findAll(array('order'=>'position'));
+		$adminMenu = self::model()->findAllByAttributes(array('isActive'=>true),array('order'=>'position'));
 		$menu['items'] = array();
 		
 		foreach($adminMenu as $val)

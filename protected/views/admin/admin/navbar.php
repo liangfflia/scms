@@ -59,8 +59,8 @@
 <div class="subnav subnav-fixed">
 	<?if($this->modelAlias != 'admin'):?>
         <ul class="nav nav-pills">
-			<li <?=($this->action->id == 'create') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?>/create<?=(Yii::app()->controller->_ownerId) ? '/owner/'.Yii::app()->controller->_ownerId : ''?>">Создать</a></li>
-			<li <?=($this->action->id == 'index') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?><?=(Yii::app()->controller->_ownerId) ? '/index/owner/'.Yii::app()->controller->_ownerId : ''?>">Менеджер</a></li>
+			<li <?=($this->action->id == 'create') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?>/create<?=(Yii::app()->controller->_ownerId) ? '/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Создать</a></li>
+			<li <?=($this->action->id == 'index') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?><?=(Yii::app()->controller->_ownerId) ? '/index/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Менеджер</a></li>
 			<? if($settings > 0): ?>
 				<li <?=($this->action->id == 'settings') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?>/settings">Настройки</a></li>
 			<? endif; ?>
