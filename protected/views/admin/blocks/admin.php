@@ -8,6 +8,9 @@
 	<?=Yii::app()->controller->getOwnBreadcrumbs()?>
 </div>
 
+<br>
+<a href="/<?=Yii::app()->session->get('backPageUrl')?>"><?=Yii::app()->session->get('backPageName')?></a>
+
 <?$this->renderPartial('_grid', array('model'=>$model));?>
 
 <div>

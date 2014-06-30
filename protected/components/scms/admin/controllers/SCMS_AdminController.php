@@ -54,7 +54,19 @@ class SCMS_AdminController extends Controller
 			$this->_redirectUrl .= '/index/owner/'.$this->_ownerId;
 		if($this->_ownerClass)
 			$this->_redirectUrl .= '/owner_class/'.$this->_ownerClass;
-//		
+		if($this->id == 'admin/page')
+		{
+			Yii::app()->session['backPageName'] = 'Перейти к страницам';
+			Yii::app()->session['backPageUrl'] = 'admin/page';
+			if($this->_ownerId)
+			{
+				$page = Page::model()->findByAttributes(array('id'=>$this->_ownerId));
+				Yii::app()->session['backPageName'] = '< '.$page->title;
+				Yii::app()->session['backPageUrl'] = 'admin/page/index/owner/'.$this->_ownerId;
+			}
+		}
+		
+		
 		return true;
 	}
 	
@@ -407,14 +419,17 @@ class SCMS_AdminController extends Controller
 				{
 						$page = Page::model()->findByAttributes(array('id'=>$this->_ownerId));
 						Yii::app()->session['ownerPageId'] = $page->id;
-						Yii::app()->session['ownerPageName'] = $page->title; echo $page->title;
+						Yii::app()->session['ownerPageName'] = $page->title;
 				}
 				
 				$href2 = false;
-				$href = '<a href="/'.$this->id.'/index/owner/'.$owner->id.'">'.$owner->title.'</a>';
+				$href = false;
+				if(!$this->_ownerClass)
+					$href = '<a href="/'.$this->id.'/index/owner/'.$owner->id.'">'.$owner->title.'</a>';
 				if($owner->ownerId == 0)
 					$href2 = '<a href="/'.$this->id.'/index">Страницы</a>';
-				$this->_ownersBreadcrumbs[] = $href;
+				if($href)
+					$this->_ownersBreadcrumbs[] = $href;
 				if($href2)
 					$this->_ownersBreadcrumbs[] = $href2;
 				$ownerId = $owner->ownerId;
@@ -422,20 +437,10 @@ class SCMS_AdminController extends Controller
 			}
 			else
 			{
-				if($this->_ownerClass == 'page')
-				{
-//						$page = Page::model()->findByAttributes(array('id'=>$this->_ownerId));
-//						if($page)
-//						{
-//							Yii::app()->session['ownerPageId'] = $page->id;
-//							Yii::app()->session['ownerPageName'] = $page->title;
-//						}
-				}
 				
 				if(Yii::app()->controller->id == 'admin/blocks')
 				{
-					$this->_ownersBreadcrumbs[] = '<a href="/admin/blocks/index/owner/1/owner_class/page">Блоки</a>';
-					$this->_ownersBreadcrumbs[] = '<a href="/admin/page/index/owner/'.Yii::app()->session['ownerPageId'].'">'.Yii::app()->session['ownerPageName'].'</a>';
+//					$this->_ownersBreadcrumbs[] = '<a href="/admin/blocks/index/owner/1/owner_class/page">Блоки</a>';
 				}
 				
 				$this->_ownersBreadcrumbs = array_reverse($this->_ownersBreadcrumbs);
