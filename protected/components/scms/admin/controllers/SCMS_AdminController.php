@@ -402,13 +402,7 @@ class SCMS_AdminController extends Controller
 			$model = $this->modelName;
 			$owner = $model::model()->findByAttributes(array('id'=>$ownerId));
 			if($owner)
-			{
-				$alias = 'page';
-				if(Yii::app()->controller->id == 'admin/blocks')
-					$alias = 'blocks';
-				if(Yii::app()->controller->id == 'admin/page')
-					$alias = 'page';
-				
+			{			
 				if($this->_ownerClass!= 'page')
 				{
 						$page = Page::model()->findByAttributes(array('id'=>$this->_ownerId));
@@ -417,9 +411,9 @@ class SCMS_AdminController extends Controller
 				}
 				
 				$href2 = false;
-				$href = '<a href="/admin/'.$alias.'/index/owner/'.$owner->id.'">'.$owner->title.'</a>';
+				$href = '<a href="/'.$this->id.'/index/owner/'.$owner->id.'">'.$owner->title.'</a>';
 				if($owner->ownerId == 0)
-					$href2 = '<a href="/admin/'.$alias.'/index">Страницы</a>';
+					$href2 = '<a href="/'.$this->id.'/index">Страницы</a>';
 				$this->_ownersBreadcrumbs[] = $href;
 				if($href2)
 					$this->_ownersBreadcrumbs[] = $href2;
@@ -431,8 +425,11 @@ class SCMS_AdminController extends Controller
 				if($this->_ownerClass == 'page')
 				{
 //						$page = Page::model()->findByAttributes(array('id'=>$this->_ownerId));
-//						Yii::app()->session['ownerPageId'] = $page->id;
-//						Yii::app()->session['ownerPageName'] = $page->title;
+//						if($page)
+//						{
+//							Yii::app()->session['ownerPageId'] = $page->id;
+//							Yii::app()->session['ownerPageName'] = $page->title;
+//						}
 				}
 				
 				if(Yii::app()->controller->id == 'admin/blocks')
