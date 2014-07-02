@@ -3,10 +3,8 @@
         <?php echo Yii::app()->user->getFlash('posError'); ?>
     </div>
 <?endif?>
-
 <?php $this->widget('ext.selgridview.SelGridView', array(
-	'id'=>'page-grid',
-//	'dataProvider'=>$model->search($ownerId),
+	'id'=>'part-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'selectableRows' => 2,
@@ -15,25 +13,13 @@
 			'id' => 'selectedItems',
 			'class' => 'CCheckBoxColumn',
         ),
+		'position',
 		'id',
-//		'src',
 		'title',
-		'alias',
 		SGrid::dateAdded(),
-		SGrid::dateUpdated(),
-		array(
-			'name' => 'part',
-			'value' => '$data->getAdminOwnerPart()'
-		),
-		array(
-			'name' => 'block',
-			'value' => '$data->getAdminOwnerBlock()'
-		),
-		array(
-			'name' => 'subpage',
-			'value' => '$data->getAdminOwnerLink()'
-		),
 		SGrid::isActive(),
-		array('class'=>'AdminButtonColumn',),
+		array(
+			'class'=>'AdminButtonColumn',
+		),
 	),
 )); ?>

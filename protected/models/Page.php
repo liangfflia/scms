@@ -5,7 +5,8 @@ class Page extends CActiveRecord
 	
 	public 
 		$subpage,
-		$block;
+		$block,
+		$part;
 	
 	
 	public static function model($className=__CLASS__)
@@ -45,6 +46,12 @@ class Page extends CActiveRecord
             'ownerBehavior' => array(
                 'class' => 'OwnerBehavior',
             ),
+//            'dateBehavior' => array(
+//                'class' => 'DateBehavior',
+//            ),
+            'controlBehavior' => array(
+                'class' => 'ControlBehavior',
+            ),
 		);
 	}
 
@@ -78,6 +85,11 @@ class Page extends CActiveRecord
 	{
 		return Block::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Page'));
 	}
+
+	public function getPartsCount()
+	{
+		return Part::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Part'));
+	}
 	
 	
 	public function getAdminOwnerLink()
@@ -89,6 +101,12 @@ class Page extends CActiveRecord
 	public function getAdminOwnerBlock()
 	{
 		echo '<a style="font-size: 18px;" href="/admin/blocks/index/owner/'.$this->id.'/owner_class/page">[ '.$this->getBlocksCount().' ]</a>';
+	}
+	
+	
+	public function getAdminOwnerPart()
+	{
+		echo '<a style="font-size: 18px;" href="/admin/parts/index/owner/'.$this->id.'/owner_class/page">[ '.$this->getPartsCount().' ]</a>';
 	}
 	
 	
