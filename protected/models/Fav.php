@@ -18,11 +18,8 @@ class Fav extends CActiveRecord
     public function behaviors()
 	{
         return array(
-            'positionBehavior' => array(
-                'class' => 'PositionBehavior',
-            ),
-            'ownerBehavior' => array(
-                'class' => 'OwnerBehavior',
+            'controlBehavior' => array(
+                'class' => 'ControlBehavior',
             ),
         );
     }
