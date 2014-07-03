@@ -1,6 +1,6 @@
 <?php
 
-class Page extends CActiveRecord
+class Page extends Base2
 {
 	
 	public 
@@ -41,14 +41,6 @@ class Page extends CActiveRecord
 	public function behaviors()
 	{
 		return array(
-			'CAdvancedArBehavior',
-			array('class' => 'ext.CAdvancedArBehavior'),
-            'ownerBehavior' => array(
-                'class' => 'OwnerBehavior',
-            ),
-//            'dateBehavior' => array(
-//                'class' => 'DateBehavior',
-//            ),
             'controlBehavior' => array(
                 'class' => 'ControlBehavior',
             ),

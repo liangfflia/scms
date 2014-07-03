@@ -9,7 +9,8 @@ class ControlBehavior extends CActiveRecordBehavior
 		parent::afterConstruct($event);
 		
 		$owner = $this->getOwner();
-		if(!empty($owner->relations()))
+		$rels = $owner->relations();
+		if(!empty($rels))
 			$owner->attachBehavior('cAdvancedArBehavior', array('class' => 'CAdvancedArBehavior'));
 		if($owner->hasAttribute('dateAdded') && $owner->hasAttribute('dateUpdated'))
 			$owner->attachBehavior('dateBehavior', array('class' => 'DateBehavior'));
