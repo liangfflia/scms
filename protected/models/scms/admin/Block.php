@@ -15,7 +15,7 @@
  * @property integer $position
  * @property integer $isActive
  */
-class Block extends CActiveRecord
+class Block extends BaseModel
 {
 	
 	public $subblock;
@@ -37,23 +37,6 @@ class Block extends CActiveRecord
 	{
 		return '{{block}}';
 	}
-
-	
-    public function behaviors()
-	{
-        return array(
-            'positionBehavior' => array(
-                'class' => 'PositionBehavior',
-            ),
-            'ownerBehavior' => array(
-                'class' => 'OwnerBehavior',
-            ),
-            'dateBehavior' => array(
-                'class' => 'DateBehavior',
-            ),
-        );
-    }
-	
 	
 	public function getOwnersCount()
 	{
@@ -81,7 +64,7 @@ class Block extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('alias, position', 'required'),
+			array('alias', 'required'),
 			array('ownerId, position, isActive', 'numerical', 'integerOnly'=>true),
 			array('title, alias', 'length', 'max'=>255),
 			array('ownerClass', 'length', 'max'=>127),
@@ -140,7 +123,7 @@ class Block extends CActiveRecord
 		$criteria->compare('dateAdded',$this->dateAdded,true);
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
 		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
-		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass);
 		$criteria->compare('position',$this->position);
 		$criteria->compare('isActive',$this->isActive);
 

@@ -18,7 +18,6 @@
 
 	<?SHtml::textfield($form, $model, 'title', 127)?>
 	<?SHtml::textfield($form, $model, 'alias', 127)?>
-	<?SHtml::textfield($form, $model, 'position', 127)?>
 
 	<?SHtml::textarea($form, $model, 'text', 500)?>
 	

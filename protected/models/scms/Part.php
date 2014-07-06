@@ -16,7 +16,7 @@
  * @property integer $position
  * @property integer $isActive
  */
-class Part extends CActiveRecord
+class Part extends BaseModel
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -44,7 +44,7 @@ class Part extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, alias, ownerId, position, isActive', 'required'),
+			array('title, alias, ownerId', 'required'),
 			array('ownerId, position, isActive', 'numerical', 'integerOnly'=>true),
 			array('title, alias', 'length', 'max'=>255),
 			array('annotation', 'length', 'max'=>500),
@@ -105,8 +105,8 @@ class Part extends CActiveRecord
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
 		$criteria->compare('annotation',$this->annotation,true);
 		$criteria->compare('text',$this->text,true);
-		$criteria->compare('ownerId',$this->ownerId);
-		$criteria->compare('ownerClass',$this->ownerClass,true);
+		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
 		$criteria->compare('position',$this->position);
 		$criteria->compare('isActive',$this->isActive);
 

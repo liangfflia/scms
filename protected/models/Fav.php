@@ -9,20 +9,10 @@
  * @property string $text
  * @property string $isActive
  */
-class Fav extends CActiveRecord
+class Fav extends BaseModel
 {
 	
 	protected $_order = 'position';
-	
-	
-    public function behaviors()
-	{
-        return array(
-            'controlBehavior' => array(
-                'class' => 'ControlBehavior',
-            ),
-        );
-    }
 
 	
 	/**

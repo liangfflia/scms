@@ -1,6 +1,6 @@
 <?php
 
-class Page extends Base2
+class Page extends BaseModel
 {
 	
 	public 
@@ -38,15 +38,7 @@ class Page extends Base2
 		);
 	}
 
-	public function behaviors()
-	{
-		return array(
-            'controlBehavior' => array(
-                'class' => 'ControlBehavior',
-            ),
-		);
-	}
-
+	
 	public function attributeLabels()
 	{
 		return array(
@@ -112,7 +104,7 @@ class Page extends Base2
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
 		$criteria->compare('metaDesc',$this->metaDesc,true);
 		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
-		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass);
 		$criteria->compare('annotation',$this->annotation,true);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('isActive',$this->isActive);
