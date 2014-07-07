@@ -4,7 +4,7 @@
     </div>
 <?endif?>
 <?php $this->widget('ext.selgridview.SelGridView', array(
-	'id'=>'part-grid',
+	'id'=>'category-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'selectableRows' => 2,
@@ -17,10 +17,6 @@
 		'id',
 		'title',
 		SGrid::dateAdded(),
-		array(
-			'name' => 'resource',
-			'value' => '$data->getAdminOwnerResLink()'
-		),
 		SGrid::isActive(),
 		array(
 			'class'=>'AdminButtonColumn',

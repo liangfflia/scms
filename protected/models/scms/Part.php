@@ -18,6 +18,10 @@
  */
 class Part extends BaseModel
 {
+	
+	public 
+		$resource;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -56,7 +60,18 @@ class Part extends BaseModel
 		);
 	}
 
+	
+	public function getResourcesCount()
+	{
+		return Block::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Resource'));
+	}
 
+	
+	public function getAdminOwnerResLink()
+	{
+		echo '<a style="font-size: 18px;" href="/admin/resources/index/owner/'.$this->id.'/owner_class/part">[ '.$this->getResourcesCount().' ]</a>';
+	}
+	
 
 	/**
 	 * @return array customized attribute labels (name=>label)

@@ -16,28 +16,16 @@ class Resource extends CActiveRecord
 	{
 		return array(
 			array('source', 'required'),
-			array('ownerId, ownerClassId, isActive', 'numerical', 'integerOnly'=>true),
+			array('ownerId, isActive', 'numerical', 'integerOnly'=>true),
 			array('source', 'length', 'max'=>500),
 			array('dateAdded, dateUpdated', 'safe'),
-			array('id, source, dateAdded, dateUpdated, ownerId, ownerClassId, isActive', 'safe', 'on'=>'search'),
+			array('id, source, dateAdded, dateUpdated, ownerId, ownerClass, isActive', 'safe', 'on'=>'search'),
 		);
 	}
 
 	public function relations()
 	{
 		return array(
-		);
-	}
-
-	public function behaviors()
-	{
-		return array(
-			'CAdvancedArBehavior' => array(
-				'class' => 'ext.CAdvancedArBehavior'
-			),
-			'dateBehavior' => array(
-				'class' => 'DateBehavior',
-			),
 		);
 	}
 
@@ -49,7 +37,7 @@ class Resource extends CActiveRecord
 			'dateAdded' => Yii::t('app', 'Date Added'),
 			'dateUpdated' => Yii::t('app', 'Date Updated'),
 			'ownerId' => Yii::t('app', 'Owner'),
-			'ownerClassId' => Yii::t('app', 'Owner Class Id'),
+			'ownerClass' => Yii::t('app', 'Owner Class Id'),
 			'isActive' => Yii::t('app', 'Is Active'),
 		);
 	}
@@ -63,7 +51,7 @@ class Resource extends CActiveRecord
 		$criteria->compare('dateAdded',$this->dateAdded,true);
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
 		$criteria->compare('ownerId',$this->ownerId);
-		$criteria->compare('ownerClassId',$this->ownerClassId,true);
+		$criteria->compare('ownerClass',$this->ownerClass,true);
 		$criteria->compare('isActive',$this->isActive);
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
