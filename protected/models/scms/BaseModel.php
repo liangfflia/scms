@@ -11,7 +11,6 @@ class BaseModel extends CActiveRecord
 	public function afterConstruct()
 	{
 		parent::afterConstruct();
-		
 		$rels = $this->relations();
 		if(!empty($rels))
 			$this->attachBehavior('cAdvancedArBehavior', array('class' => 'CAdvancedArBehavior'));

@@ -72,7 +72,7 @@ class Page extends BaseModel
 
 	public function getPartsCount()
 	{
-		return Part::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Part'));
+		return Part::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Page'));
 	}
 	
 	
