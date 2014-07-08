@@ -16,6 +16,7 @@
 		'position',
 		'id',
 		'title',
+		SGrid::image('source', 100),
 		SGrid::dateAdded(),
 		SGrid::isActive(),
 		array(

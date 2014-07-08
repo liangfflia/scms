@@ -36,38 +36,39 @@ class PhotoController extends S_AdminController
     }
 
     public function actionUpdate($id)
-    {
-	$model = $this->loadModel($id);
-
-	// Uncomment the following line if AJAX validation is needed
-	// $this->performAjaxValidation($model);
-
-	if (isset($_POST[$this->modelName]))
 	{
-	    $model->delResCheckbox('src', 'delImage');
-	    $model->delResCheckbox('thumb', 'delImage');
-	    
-	    $attrs = $model->attributes;
+		$model = $this->loadModel($id);
 
-	    $model->attributes = $_POST[$this->modelName];
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
 
-	    if(empty($model->attributes->src))
-		$model->src = $attrs['src'];
-	    
-	    $model->addImage('src', 'files/photos/');
-	    $model->addImage('src', 'files/photos/thumbs/', null, 50, 'thumb');
+		if (isset($_POST[$this->modelName]))
+		{
+			$model->delResCheckbox('src', 'delImage');
+			$model->delResCheckbox('thumb', 'delImage');
 
-	    if ($model->save())
-	    {
-		$model->saveImages();
-		$this->redirect(array('admin'));
-	    }
+			$attrs = $model->attributes;
+
+			$model->attributes = $_POST[$this->modelName];
+
+//			if (empty($model->attributes->src))
+			if (empty($model->attributes['src']))
+				$model->src = $attrs['src'];
+
+			$model->addImage('src', 'files/photos/');
+			$model->addImage('src', 'files/photos/thumbs/', null, 50, 'thumb');
+
+			if ($model->save())
+			{
+				$model->saveImages();
+				$this->redirect(array('admin'));
+			}
+		}
+
+		$this->render('update', array(
+			'model' => $model,
+		));
 	}
-
-	$this->render('update', array(
-	    'model' => $model,
-	));
-    }
 
     
     public function actionIndex()

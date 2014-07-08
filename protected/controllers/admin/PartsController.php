@@ -7,6 +7,6 @@ class PartsController extends S_AdminController
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	protected $modelName = 'Part';
-	public $modelAlias = 'parts';
+	public $modelAlias = 'part';
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Resource extends CActiveRecord
+class Resource extends BaseModel
 {
 	public static function model($className=__CLASS__)
 	{
@@ -15,14 +15,25 @@ class Resource extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('source', 'required'),
+//			array('source', 'required'),
 			array('ownerId, isActive', 'numerical', 'integerOnly'=>true),
-			array('source', 'length', 'max'=>500),
+			array('source', 'file', 'allowEmpty' => true, 'types'=>'jpg, gif, png, bmp, doc, docx, pdf', 'on' => 'insert, update'),
+//			array('source', 'length', 'max'=>500),
 			array('dateAdded, dateUpdated', 'safe'),
 			array('id, source, dateAdded, dateUpdated, ownerId, ownerClass, isActive', 'safe', 'on'=>'search'),
 		);
 	}
 
+	public function behaviors()
+	{
+		return array(
+            'resourceBehavior' => array(
+                'class' => 'ResourceBehavior',
+				'delFiles' => array('source'),
+            ),
+		);
+	}
+	
 	public function relations()
 	{
 		return array(
@@ -50,8 +61,8 @@ class Resource extends CActiveRecord
 		$criteria->compare('source',$this->source);
 		$criteria->compare('dateAdded',$this->dateAdded,true);
 		$criteria->compare('dateUpdated',$this->dateUpdated,true);
-		$criteria->compare('ownerId',$this->ownerId);
-		$criteria->compare('ownerClass',$this->ownerClass,true);
+		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
+		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
 		$criteria->compare('isActive',$this->isActive);
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,

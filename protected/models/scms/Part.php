@@ -63,7 +63,7 @@ class Part extends BaseModel
 	
 	public function getResourcesCount()
 	{
-		return Block::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'Resource'));
+		return Resource::model()->countByAttributes(array('ownerId'=>$this->id, 'ownerClass' => 'part'));
 	}
 
 	

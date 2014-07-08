@@ -7,7 +7,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'category-form',
+	'id'=>'resource-form',
 	'enableAjaxValidation'=>false,
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 )); ?>
@@ -18,6 +18,8 @@
 
 	<?SHtml::textfield($form, $model, 'title', 127)?>
 
+	<?SHtml::imageAdmin($form, $model, 'source')?>
+	
 	<?SHtml::checkbox($form, $model, 'isActive')?>
 	
 	<div class="row buttons">

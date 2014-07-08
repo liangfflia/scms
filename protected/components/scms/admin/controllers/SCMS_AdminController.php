@@ -10,7 +10,8 @@ class SCMS_AdminController extends Controller
 		$upUrl,
 		$downUrl,
 		$_ownerId,
-		$_ownerClass;
+		$_ownerClass,
+		$_redirectUrl;
 	
 	
 	protected 
@@ -18,7 +19,6 @@ class SCMS_AdminController extends Controller
 		$formAjaxAlias = null,
 		$uploadFolder = 'tmp',
 			
-		$_redirectUrl,
 		$_ownersBreadcrumbs = array();
 	
 

@@ -16,7 +16,7 @@
 
 	<?=$form->errorSummary($model)?>
 
-        <?SHtml::imageAdmin($form, $model, 'src')?>
+	<?SHtml::imageAdmin($form, $model, 'src')?>
 
 	<?SHtml::textfield($form, $model, 'title',127)?>
 	

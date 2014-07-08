@@ -97,7 +97,7 @@ class SHtml
 	static public function adminButtonBack($alias)
 	{
 		?>
-		<a href="<?=Yii::app()->baseUrl.'/admin/'.$alias?>" class="btn btn-primary">Назад</a>
+		<a href="<?=Yii::app()->controller->_redirectUrl?>" class="btn btn-primary">Назад</a>
 		<?
 		
 	}
