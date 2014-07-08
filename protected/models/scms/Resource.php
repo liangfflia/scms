@@ -68,4 +68,28 @@ class Resource extends BaseModel
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
+	static public function imageCrop($url, $set)
+	{
+		$settings = require_once('protected/components/scms/config/resource.php');
+		
+		if (!is_dir('files/scms'))
+			mkdir('files/scms', 0775);
+		
+		if(isset($settings[$set]) && !empty($settings[$set]))
+		{
+			if (!is_dir('files/scms/'.$set))
+				mkdir('files/scms/'.$set, 0775);
+			
+			$resName = md5('filename + salt');
+			
+		}
+		else
+		{
+			die('Cant generate image');
+		}
+		
+	}
+	
 }
