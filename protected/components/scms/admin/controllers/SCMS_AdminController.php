@@ -6,6 +6,7 @@ class SCMS_AdminController extends Controller
 	public 
 		$layout='/admin/admin/layouts/main',
 		$modelAlias = null,
+		$alias = null,
 		$delUrl,
 		$upUrl,
 		$downUrl,
@@ -38,7 +39,9 @@ class SCMS_AdminController extends Controller
 		{
 			$this->formAjaxAlias = $this->getAliasName($this->modelName) . '-form';
 		}
-                
+
+		$this->alias = strtolower($this->id);
+		
 		$this->upUrl = CController::createUrl('ajaxmoveup');
 		$this->downUrl = CController::createUrl('ajaxmovedown');
 		$this->delUrl = CController::createUrl('ajaxdelete');

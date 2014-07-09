@@ -52,17 +52,15 @@
         </div>
     </div>
 </div>
-
-<? $manager = Manager::model()->findByAttributes(array('alias'=>$this->modelAlias)); ?>
 <? $settings = Settings::model()->countByAttributes(array('group'=>$this->modelAlias)); ?>
 
 <div class="subnav subnav-fixed">
 	<?if($this->modelAlias != 'admin'):?>
         <ul class="nav nav-pills">
-			<li <?=($this->action->id == 'create') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?>/create<?=(Yii::app()->controller->_ownerId) ? '/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Создать</a></li>
-			<li <?=($this->action->id == 'index') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?><?=(Yii::app()->controller->_ownerId) ? '/index/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Менеджер</a></li>
+			<li <?=($this->action->id == 'create') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/<?=Yii::app()->controller->alias?>/create<?=(Yii::app()->controller->_ownerId) ? '/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Создать</a></li>
+			<li <?=($this->action->id == 'index') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/<?=Yii::app()->controller->alias?><?=(Yii::app()->controller->_ownerId) ? '/index/owner/'.Yii::app()->controller->_ownerId : ''?><?=(Yii::app()->controller->_ownerClass) ? '/owner_class/'.Yii::app()->controller->_ownerClass : ''?>">Менеджер</a></li>
 			<? if($settings > 0): ?>
-				<li <?=($this->action->id == 'settings') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/admin/<?=$manager->alias?>/settings">Настройки</a></li>
+				<li <?=($this->action->id == 'settings') ? 'class="active"' : ''?>><a href="<?=Yii::app()->baseUrl?>/<?=Yii::app()->controller->alias?>/settings">Настройки</a></li>
 			<? endif; ?>
         </ul>
 	<?endif;?>
