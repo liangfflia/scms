@@ -109,6 +109,17 @@ class JS
     {
         $jQueryId = self::$id;
         
+		if(Yii::app()->controller->_ownerId != 0)
+		{
+			$upUrl .= '/owner/'.Yii::app()->controller->_ownerId;
+			$downUrl .= '/owner/'.Yii::app()->controller->_ownerId;
+		}
+		if(!empty(Yii::app()->controller->_ownerClass))
+		{
+			$upUrl .= '/owner_class/'.Yii::app()->controller->_ownerClass;
+			$downUrl .= '/owner_class/'.Yii::app()->controller->_ownerClass;
+		}
+		
         Yii::app()->clientScript->registerScript('moveChecked', "
                 $('.moveUp, .moveDown').live('click', function(){
                         var checked = new Array();

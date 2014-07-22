@@ -33,23 +33,41 @@ class PositionBehavior extends CActiveRecordBehavior
 	}
 	
 	
-	public function getNextPos($pos)
+	public function getNextPos($pos, $ownerId = null, $ownerClass = null)
 	{
-		$sql = "SELECT MIN(position) nextPos FROM `{$this->getOwner()->tableName()}` WHERE position > {$pos}";
-		$command = $a = Yii::app()->db->createCommand($sql);
+		$cond = $this->_getOwnerCondStr($ownerId, $ownerClass);
+		
+		$sql = "SELECT MIN(position) nextPos FROM `{$this->getOwner()->tableName()}` WHERE position > {$pos}{$cond}";
+		$command = Yii::app()->db->createCommand($sql);
 		$position = $command->queryScalar();
 		
 		return $position;
 	}
 	
 	
-	public function getPrevPos($pos)
+	public function getPrevPos($pos, $ownerId = null, $ownerClass = null)
 	{
-		$sql = "SELECT MAX(position) maxPos FROM `{$this->getOwner()->tableName()}` WHERE position < {$pos}";
-		$command = $a = Yii::app()->db->createCommand($sql);
+		$cond = $this->_getOwnerCondStr($ownerId, $ownerClass);
+		
+		$sql = "SELECT MAX(position) maxPos FROM `{$this->getOwner()->tableName()}` WHERE position < {$pos}{$cond}";
+		$command = Yii::app()->db->createCommand($sql);
 		$position = $command->queryScalar();
 		
 		return $position;
 	}
+	
+	
+	private function _getOwnerCondStr($ownerId = null, $ownerClass = null)
+	{
+		$owner = $this->getOwner();
+		$cond = '';
+		if($owner->hasAttribute('ownerId') && $ownerId !== null)
+			$cond .= " AND `ownerId`={$ownerId}";
+		if($owner->hasAttribute('ownerClass') && $ownerClass !== null)
+			$cond .= " AND `ownerClass`='{$ownerClass}'";
+		
+		return $cond;
+	}
+	
 	
 }

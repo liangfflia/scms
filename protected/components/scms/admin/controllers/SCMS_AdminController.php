@@ -42,13 +42,13 @@ class SCMS_AdminController extends Controller
 
 		$this->alias = strtolower($this->id);
 		
-		$this->upUrl = CController::createUrl('ajaxmoveup');
-		$this->downUrl = CController::createUrl('ajaxmovedown');
-		$this->delUrl = CController::createUrl('ajaxdelete');
+		$this->upUrl = CController::createUrl('ajaxMoveUp');
+		$this->downUrl = CController::createUrl('ajaxMoveDown');
+		$this->delUrl = CController::createUrl('ajaxDelete');
 	}
 	
 	
-	protected function beforeAction($action)
+	public function beforeAction($action)
 	{
 		$this->_ownerId = Yii::app()->request->getParam('owner') ? Yii::app()->request->getParam('owner') : 0;
 		$this->_ownerClass = Yii::app()->request->getParam('owner_class') ? Yii::app()->request->getParam('owner_class') : NULL;
@@ -69,9 +69,18 @@ class SCMS_AdminController extends Controller
 			}
 		}
 		
-		
 		return true;
 	}
+	
+	
+public function filters()
+{
+    return array(
+        'ajaxOnly + ajaxMoveUp',
+        'ajaxOnly + ajaxMoveDown',
+        'ajaxOnly + ajaxDelete',
+    );
+}
 	
 	
 	/**
@@ -216,8 +225,9 @@ class SCMS_AdminController extends Controller
 	}
 	
 	
-	public function actionAjaxMoveUp()
+	public function actionAjaxMoveUp($owner = null, $owner_class = null)
 	{
+		
 		$model=new $this->modelName('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET[$this->modelName]))
@@ -235,11 +245,16 @@ class SCMS_AdminController extends Controller
 					$modelCurr = $modelRow->findByPk($id);
 
 					$currPos = $modelCurr->position;
-					$nextPos = $modelRow->getPrevPos($currPos);
+					$nextPos = $modelRow->getPrevPos($currPos, $owner, $owner_class);
 					if($nextPos != 0)
 					{
-						$modelNext = $modelRow->findByAttributes(array('position' => $nextPos));
-
+						$cond = array('position' => $nextPos);
+						if($owner)
+							$cond['ownerId'] = $owner;
+						if($owner_class)
+							$cond['ownerClass'] = $owner_class;
+						$modelNext = $modelRow->findByAttributes($cond);
+						
 						$modelCurr->position = $nextPos;
 						$modelCurr->update();
 
@@ -260,7 +275,7 @@ class SCMS_AdminController extends Controller
 	}
 
 	
-	public function actionAjaxMoveDown()
+	public function actionAjaxMoveDown($owner = null, $owner_class = null)
 	{
 		$model=new $this->modelName('search');
 		$model->unsetAttributes();  // clear any default values
@@ -280,11 +295,16 @@ class SCMS_AdminController extends Controller
 					$modelCurr = $modelRow->findByPk($id);
 
 					$currPos = $modelCurr->position;
-//					$nextPos = $modelRow->getNextPos($currPos);
-					$nextPos = $modelRow::model()->getNextPos($currPos);
+					$nextPos = $modelRow->getNextPos($currPos, $owner, $owner_class);
+					
 					if($nextPos != 0)
 					{
-						$modelNext = $modelRow->findByAttributes(array('position' => $nextPos));
+						$cond = array('position' => $nextPos);
+						if($owner)
+							$cond['ownerId'] = $owner;
+						if($owner_class)
+							$cond['ownerClass'] = $owner_class;
+						$modelNext = $modelRow->findByAttributes($cond);
 
 						$modelCurr->position = $nextPos;
 						$modelCurr->update();
