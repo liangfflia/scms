@@ -100,6 +100,16 @@ class Resource extends BaseModel
 	}
 	
 	
+	public function hex2rgb($hex)
+	{
+		$rgb[0]=hexdec(substr($hex,1,2));
+		$rgb[1]=hexdec(substr($hex,3,2));
+		$rgb[2]=hexdec(substr($hex,5,2));
+		
+		return $rgb;
+	}
+	
+	
 	public function imageResize($url, $set)
 	{
 		$settings = require_once('protected/components/scms/config/resource.php');
@@ -135,8 +145,6 @@ class Resource extends BaseModel
 			else
 				die('Please input "width" or "height" parameter in resource config section '.$set);
 			
-//			http://php.net/manual/en/function.imagecreatetruecolor.php
-			
 			$tmpImage = imagecreatetruecolor($new_width, $new_height);
 			imagesavealpha($tmpImage, true);
 			$trans_colour = imagecolorallocatealpha($tmpImage, 0, 0, 0, 127);
@@ -144,9 +152,54 @@ class Resource extends BaseModel
 			
 			if($area->rule == 'resize')
 				imagecopyresized($tmpImage, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+			elseif($area->rule == 'match')
+			{
+				if(!isset($area->position) || !in_array($area->position, array('left_top', 'center')))
+					$area->position = 'left_top';
+				
+				if($area->position == 'left_top')
+				{
+					imagecopy($tmpImage, $image, 0, 0, 0, 0, $new_width, $new_height);
+				}
+				elseif($area->position == 'center')
+				{
+					$x = ($width / 2) - ($new_width / 2);
+					$y = ($height / 2) - ($new_height / 2);
+					imagecopy($tmpImage, $image, 0, 0, $x, $y, $new_width, $new_height);
+				}
+			}
+			elseif($area->rule == 'inscribe')
+			{
+				if(!isset($area->x_border) && !$area->x_border)
+					$area->x_border = 0;
+				if(!isset($area->y_border) && !$area->y_border)
+					$area->y_border = 0;
+				$tmpImage = imagecreatetruecolor($new_width+($area->x_border * 2), $new_height+($area->y_border * 2));
+				imagesavealpha($tmpImage, true);
+
+				//background color
+				if(!isset($area->background) || !$area->background)
+					$area->background = '#FFFFFF';
+				if($area->background == 'transparent')
+					imagefill($tmpImage, 0, 0, $trans_colour);
+				else
+				{
+					$rgb = $this->hex2rgb($area->background);
+					$color = imagecolorallocate($tmpImage, $rgb[0], $rgb[1], $rgb[2]);
+					imagefill($tmpImage, 0, 0, $color);
+				}
+				imagecopyresized($tmpImage, $image, $area->x_border, $area->y_border, 0, 0, $new_width, $new_height, $width, $height);
+			}
 			
 			imagepng($tmpImage, "files/scms/$set/test.png");
 		}
 	}
+	
+	
+	private function _inscribe($area)
+	{
+		
+	}
+	
 	
 }
