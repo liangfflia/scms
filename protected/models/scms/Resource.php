@@ -120,6 +120,8 @@ class Resource extends BaseModel
             $new_width = (isset($area->width) && $area->width) ? $area->width : null;
             $new_height = (isset($area->height) && $area->height) ? $area->height : null;
 			
+//			http://php.net/manual/en/function.imagecreatetruecolor.php
+			
 			$tmpImage = imagecreatetruecolor($new_width, $new_height);
 			
 			if($area->rule == 'resize')
