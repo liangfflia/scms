@@ -100,7 +100,7 @@ class Resource extends BaseModel
 	}
 	
 	
-	public function imageGet($url, $set)
+	public function imageResize($url, $set)
 	{
 		$settings = require_once('protected/components/scms/config/resource.php');
 		
@@ -117,12 +117,30 @@ class Resource extends BaseModel
 			$width = imagesx($image);
 			$height = imagesy($image);
 			
-            $new_width = (isset($area->width) && $area->width) ? $area->width : null;
-            $new_height = (isset($area->height) && $area->height) ? $area->height : null;
+			if( (isset($area->width) && $area->width) && (!isset($area->height) || !$area->height) )
+			{
+				$new_width = $area->width;
+				$new_height = $height / ($width / $new_width);
+			}
+			elseif(( (!isset($area->width) || !$area->width) && (isset($area->height) && $area->height) ))
+			{
+				$new_height = $area->height;
+				$new_width = $width / ($height / $new_height);
+			}
+			elseif( (isset($area->width) && $area->width) && (isset($area->height) && $area->height))
+			{
+				$new_width = (isset($area->width) && $area->width) ? $area->width : null;
+				$new_height = (isset($area->height) && $area->height) ? $area->height : null;
+			}
+			else
+				die('Please input "width" or "height" parameter in resource config section '.$set);
 			
 //			http://php.net/manual/en/function.imagecreatetruecolor.php
 			
 			$tmpImage = imagecreatetruecolor($new_width, $new_height);
+			imagesavealpha($tmpImage, true);
+			$trans_colour = imagecolorallocatealpha($tmpImage, 0, 0, 0, 127);
+			imagefill($tmpImage, 0, 0, $trans_colour);
 			
 			if($area->rule == 'resize')
 				imagecopyresized($tmpImage, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
