@@ -188,7 +188,23 @@ class Resource extends BaseModel
 					$color = imagecolorallocate($tmpImage, $rgb[0], $rgb[1], $rgb[2]);
 					imagefill($tmpImage, 0, 0, $color);
 				}
-				imagecopyresized($tmpImage, $image, $area->x_border, $area->y_border, 0, 0, $new_width, $new_height, $width, $height);
+				
+//				if(isset($area->crop) && $area->crop && isset($area->width) && $area->crop && isset($area->height) && $area->height)
+//				{
+//					$x = 0;
+//					$y = 0;
+//					if(isset($area->position) && $area->position)
+//					{
+//						if($area->position == 'center')
+//						{
+//							$x = ($width / 2) - ($new_width / 2);
+//							$y = ($height / 2) - ($new_height / 2);
+//						}
+//					}
+//					imagecopy($tmpImage, $image, $area->x_border, $area->y_border, $x, $y, $new_width, $new_height);
+//				}
+//				else
+					imagecopyresized($tmpImage, $image, $area->x_border, $area->y_border, 0, 0, $new_width, $new_height, $width, $height);
 			}
 			
 			imagepng($tmpImage, "files/scms/$set/test.png");

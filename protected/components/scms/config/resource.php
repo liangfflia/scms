@@ -14,10 +14,10 @@ return array(
 //		'rule' => 'resize',
 //		'rule' => 'match',
 		'rule' => 'inscribe',
-		'x_border' => 0,
-		'y_border' => 0,
-		'background' => 'transparent',
+		'x_border' => 50,
+		'y_border' => 50,
+		'background' => '#FFFFFF',
 		'width' => 300,
-		'height' => 300
+//		'height' => 300,
 	)
 );
