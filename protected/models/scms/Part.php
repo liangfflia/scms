@@ -19,6 +19,10 @@
 class Part extends BaseModel
 {
 	
+	protected 
+		$_order = 'position';
+	
+	
 	public 
 		$resource;
 	
@@ -116,6 +120,8 @@ class Part extends BaseModel
 		$criteria->compare('position',$this->position);
 		$criteria->compare('isActive',$this->isActive);
 
+		$criteria->order = $this->_order;
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

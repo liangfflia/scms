@@ -1,4 +1,4 @@
-<? JS::init('category-grid')->delElements($this->delUrl)->move($this->upUrl, $this->downUrl)->search(); ?>
+<? JS::init('part-grid')->delElements($this->delUrl)->move($this->upUrl, $this->downUrl)->search(); ?>
 
 <h1>Manage Menu Elements</h1>
 

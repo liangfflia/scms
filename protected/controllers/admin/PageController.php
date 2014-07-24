@@ -12,6 +12,9 @@ class PageController extends S_AdminController
 	{
 		$model = new $this->modelName('search');
 		
+		$res = new Resource;
+		$res->imageGet('files/53bbef3b85c57.jpg', 'slider');
+		
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET[$this->modelName]))
 			$model->attributes=$_GET[$this->modelName];

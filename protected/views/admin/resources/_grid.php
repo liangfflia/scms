@@ -4,7 +4,7 @@
     </div>
 <?endif?>
 <?php $this->widget('ext.selgridview.SelGridView', array(
-	'id'=>'category-grid',
+	'id'=>'resource-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'selectableRows' => 2,

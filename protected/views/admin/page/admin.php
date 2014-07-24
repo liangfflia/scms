@@ -1,5 +1,4 @@
 <? JS::init('#page-grid')->delElements($this->delUrl)->search(); ?>
-<?Resource::imageCrop(1, 'slider');?>
 <h1> Manage&nbsp;Pages</h1>
 
 <?php echo CHtml::link(Yii::t('app', 'Advanced Search'),'#',array('class'=>'search-button')); ?>

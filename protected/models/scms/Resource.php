@@ -2,6 +2,11 @@
 
 class Resource extends BaseModel
 {
+	
+	protected 
+		$_order = 'position';
+	
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -64,32 +69,64 @@ class Resource extends BaseModel
 		$criteria->compare('ownerId',Yii::app()->controller->_ownerId);
 		$criteria->compare('ownerClass',Yii::app()->controller->_ownerClass,true);
 		$criteria->compare('isActive',$this->isActive);
+		
+		$criteria->order = $this->_order;
+		
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
 	}
 	
 	
-	static public function imageCrop($url, $set)
+	private function getImageResource($url)
+	{
+		if(file_exists($url))
+		{
+			$info = pathinfo($url);
+			$extension = strtolower($info['extension']);
+			
+			$image = false;
+			if($extension == 'jpg' || $extension == 'jpeg')
+				$image = imagecreatefromjpeg($url);
+			elseif($extension == 'png')
+				$image = imagecreatefrompng($url);
+			elseif($extension == 'gif')
+				$image = imagecreatefromgif($url);
+			elseif($extension == 'bmp')
+				$image = imagecreatefromwbmp($url);
+			return $image;
+		}
+		return false;
+	}
+	
+	
+	public function imageGet($url, $set)
 	{
 		$settings = require_once('protected/components/scms/config/resource.php');
 		
-		if (!is_dir('files/scms'))
-			mkdir('files/scms', 0775);
-		
-		if(isset($settings[$set]) && !empty($settings[$set]))
+		if(file_exists($url))
 		{
+			if (!is_dir('files/scms'))
+				mkdir('files/scms', 0775);
 			if (!is_dir('files/scms/'.$set))
 				mkdir('files/scms/'.$set, 0775);
 			
-			$resName = md5('filename + salt');
+			$image = $this->getImageResource($url);
+			$area = json_decode(json_encode($settings[$set]));
+
+			$width = imagesx($image);
+			$height = imagesy($image);
 			
+            $new_width = (isset($area->width) && $area->width) ? $area->width : null;
+            $new_height = (isset($area->height) && $area->height) ? $area->height : null;
+			
+			$tmpImage = imagecreatetruecolor($new_width, $new_height);
+			
+			if($area->rule == 'resize')
+				imagecopyresized($tmpImage, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+			
+			imagepng($tmpImage, "files/scms/$set/test.png");
 		}
-		else
-		{
-			die('Cant generate image');
-		}
-		
 	}
 	
 }
