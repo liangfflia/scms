@@ -11,9 +11,11 @@ class PositionBehavior extends CActiveRecordBehavior
 		$owner = $this->getOwner();
 		if($owner->hasAttribute('position'))
 		{
+			$cond = $this->_getOwnerCondStr(Yii::app()->controller->_ownerId, Yii::app()->controller->_ownerClass);
+			
 			if($owner->isNewRecord)
 			{
-				$sql = "SELECT MAX(position) maxPos FROM `{$this->getOwner()->tableName()}`";
+				$sql = "SELECT MAX(position) maxPos FROM `{$this->getOwner()->tableName()}` WHERE 1{$cond}";
 				$command = $a = Yii::app()->db->createCommand($sql);
 				$maxPos = $command->queryScalar();		
 
