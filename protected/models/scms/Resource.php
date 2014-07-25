@@ -174,40 +174,70 @@ class Resource extends BaseModel
 					$area->x_border = 0;
 				if(!isset($area->y_border) && !$area->y_border)
 					$area->y_border = 0;
+				
+				$isVertical = false;
+				$isHorisontal = false;
+				
+				if($width > $height)
+					$isHorisontal = true;
+				if($width < $height)
+					$isVertical = true;
+					
 				$tmpImage = imagecreatetruecolor($new_width+($area->x_border * 2), $new_height+($area->y_border * 2));
 				imagesavealpha($tmpImage, true);
-
+				
 				//background color
 				if(!isset($area->background) || !$area->background)
 					$area->background = '#FFFFFF';
+				
 				if($area->background == 'transparent')
-					imagefill($tmpImage, 0, 0, $trans_colour);
+					$color = $trans_colour;
 				else
 				{
 					$rgb = $this->hex2rgb($area->background);
 					$color = imagecolorallocate($tmpImage, $rgb[0], $rgb[1], $rgb[2]);
-					imagefill($tmpImage, 0, 0, $color);
 				}
 				
-//				if(isset($area->crop) && $area->crop && isset($area->width) && $area->crop && isset($area->height) && $area->height)
-//				{
-//					$x = 0;
-//					$y = 0;
-//					if(isset($area->position) && $area->position)
-//					{
-//						if($area->position == 'center')
-//						{
-//							$x = ($width / 2) - ($new_width / 2);
-//							$y = ($height / 2) - ($new_height / 2);
-//						}
-//					}
-//					imagecopy($tmpImage, $image, $area->x_border, $area->y_border, $x, $y, $new_width, $new_height);
-//				}
-//				else
-					imagecopyresized($tmpImage, $image, $area->x_border, $area->y_border, 0, 0, $new_width, $new_height, $width, $height);
+				imagefill($tmpImage, 0, 0, $color);
+				
+				//@TODO rate is wrong??
+				if($isVertical)
+				{
+					//@TODO: Вписать изображение в определенную область
+					$rate = $new_width / $new_height;
+					$image2 = imagecreatetruecolor($new_width * ($width/$height), $new_height );
+					imagefill($image2, 0, 0, $color);
+					$y = ($new_height - ($new_height * $rate) ) / 2;
+					
+					//а не меньше ли высота нашей картинки чем высота нужной области
+					//@TODO  == 0
+					if($y < 0)
+					{
+						$y = 0;
+						$x = '?';
+						//1, 2 length's / x
+						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
+					}
+					else
+						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
+					
+					imagepng($image2, "files/scms/$set/test.png");
+				}
+				elseif($isHorisontal)
+				{
+					$rate = $new_height / $new_width;
+//					echo $new_width.'x'.$new_height * ($height/$width);exit;
+//					echo $width.'x'.$height;exit;
+					$image2 = imagecreatetruecolor($new_width, $new_height * ($height/$width) );
+					imagefill($image2, 0, 0, $color);
+					$x = ($new_width - ($new_width * $rate) ) / 2;
+					imagecopyresized($image2, $image, $x, 0, 0, 0, $new_width * $rate, $new_height * ($height/$width), $width, $height);
+					imagepng($image2, "files/scms/$set/test.png");
+				}
+				
 			}
 			
-			imagepng($tmpImage, "files/scms/$set/test.png");
+//			imagepng($tmpImage, "files/scms/$set/test.png");
 		}
 	}
 	

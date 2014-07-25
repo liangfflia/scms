@@ -17,7 +17,7 @@ return array(
 		'x_border' => 50,
 		'y_border' => 50,
 		'background' => '#FFFFFF',
-		'width' => 300,
-//		'height' => 300,
+		'width' => 900,
+		'height' => 400,
 	)
 );
