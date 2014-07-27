@@ -203,8 +203,9 @@ class Resource extends BaseModel
 				//@TODO rate is wrong??
 				if($isVertical)
 				{
-					//@TODO: Вписать изображение в определенную область
+					//@TODO: Вписать изображение в определенную область(то есть добавить куски к ширине)
 					$rate = $new_width / $new_height;
+					//Image length НЕПРАВИЛЬНАЯ 900 != 600
 					$image2 = imagecreatetruecolor($new_width * ($width/$height), $new_height );
 					imagefill($image2, 0, 0, $color);
 					$y = ($new_height - ($new_height * $rate) ) / 2;
@@ -213,10 +214,9 @@ class Resource extends BaseModel
 					//@TODO  == 0
 					if($y < 0)
 					{
-						$y = 0;
-						$x = '?';
 						//1, 2 length's / x
-						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
+						$x = (($new_width * ($width/$height) - ($new_width * ($width/$height))/$rate)) / 2;
+						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, ($new_height * $rate)/$rate, $width, $height);
 					}
 					else
 						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
