@@ -212,7 +212,7 @@ class Resource extends BaseModel
 					$y = ($new_height - ($new_height * $rate) ) / 2;
 					
 					//а не меньше ли высота нашей картинки чем высота нужной области
-					//@TODO  == 0
+					//@TODO  == 0 ???
 					if($y < 0)
 					{
 						//1, 2 length's / x
@@ -221,7 +221,9 @@ class Resource extends BaseModel
 					}
 					else
 					{
-						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
+						$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
+						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
+//						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
 					}
 					
 					imagepng($image2, "files/scms/$set/test.png");
