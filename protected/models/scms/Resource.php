@@ -239,8 +239,15 @@ class Resource extends BaseModel
 					// Horisontal
 					if($new_width > $new_height)
 					{
-						$x = ($new_width - ($new_width * ($width/$height))/$rate)/2; 
-						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
+						if($x < 0)
+						{
+							echo 1; exit;
+						}
+						else
+						{
+							$x = ($new_width - ($new_width * ($width/$height))/$rate)/2; 
+							imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
+						}
 					}
 					else
 					{
