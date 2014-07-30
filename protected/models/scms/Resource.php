@@ -199,7 +199,7 @@ class Resource extends BaseModel
 				}
 				
 				imagefill($tmpImage, 0, 0, $color);
-				$rate = $new_width / $new_height;// maybe error!
+				$rate = $new_width / $new_height;
 				$image2 = imagecreatetruecolor($new_width, $new_height );
 				imagefill($image2, 0, 0, $color);
 				
@@ -207,42 +207,46 @@ class Resource extends BaseModel
 				{
 					$y = ($new_height - ($new_height * $rate) ) / 2;
 					$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
-						
-					imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
+					
+					if($new_width > $new_height)
+					{
+						$x = ($new_width - ($new_width * ($width/$height))/$rate)/2; 
+						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
+					}
+					else
+					{
+						$y = ($new_height - ($new_height * ($height/$width))*$rate)/2;
+						if($y < 0)
+						{
+//							imagecopyresized($image2, $image, $x, 0, 0, 0, $new_width/($rate), $new_height, $width, $height);
+							imagecopyresized($image2, $image, $x, 0, 0, 0, $new_width/($height/$width), $new_height, $width, $height);
+						}
+						else
+							imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height * ($height/$width))*$rate, $width, $height);
+					}
+					
+//					imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
 					imagepng($image2, "files/scms/$set/test.png");
 				}
 //				elseif($isHorisontal)
 				// Horisontal and cvadrat
 				else
 				{
-					$rate_original = $width / $height;
+					//@TODO: delete x and y
+					$x = ($new_width - ($new_width * $rate) ) / 2;
+					$y = (($new_height - ($new_height * ($height/$width))/$rate)) / 2;
 
-					// Modify rate check
-					if($rate_original == 1)
+					// Horisontal
+					if($new_width > $new_height)
 					{
-						$x = ($new_width - ($new_width * $rate) ) / 2;
-						$y = (($new_height - ($new_height * ($height/$width))/$rate)) / 2;
-						
-						// Horisontal
-						if($new_width > $new_height)
-						{
-							$x = ($new_width - ($new_width * ($width/$height))/$rate)/2; 
-							imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
-						}// Vertical
-//						elseif($new_width < $new_height)
-						else
-						{
-							$y = ($new_height - ($new_height * ($height/$width))*$rate)/2; 
-							imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height * ($height/$width))*$rate, $width, $height);
-						}
+						$x = ($new_width - ($new_width * ($width/$height))/$rate)/2; 
+						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
 					}
 					else
 					{
-						$x = ($new_width - ($new_width * $rate) ) / 2;
-						$y = (($new_height - ($new_height * ($height/$width))/$rate)) / 2;
+						$y = ($new_height - ($new_height * ($height/$width))*$rate)/2; 
+						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height * ($height/$width))*$rate, $width, $height);
 					}
-					
-//					imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height * ($height/$width))/$rate, $width, $height);
 					imagepng($image2, "files/scms/$set/test.png");
 				}
 			}
