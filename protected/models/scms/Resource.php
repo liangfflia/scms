@@ -199,47 +199,27 @@ class Resource extends BaseModel
 				}
 				
 				imagefill($tmpImage, 0, 0, $color);
+				$rate = $new_width / $new_height;
+				$image2 = imagecreatetruecolor($new_width, $new_height );
+				imagefill($image2, 0, 0, $color);
 				
-				//@TODO rate is wrong??
 				if($isVertical)
 				{
-					//@TODO: Вписать изображение в определенную область(то есть добавить куски к ширине)
-					$rate = $new_width / $new_height;
-					//Image length НЕПРАВИЛЬНАЯ 900 != 600
-					
-					$image2 = imagecreatetruecolor($new_width, $new_height );
-					imagefill($image2, 0, 0, $color);
 					$y = ($new_height - ($new_height * $rate) ) / 2;
-					
-					//а не меньше ли высота нашей картинки чем высота нужной области
-					//@TODO  == 0 ???
-					if($y < 0)
-					{
-						//1, 2 length's / x
-						$x = (($new_width - ($new_width * ($width/$height))/$rate)) / 2;
-						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, ($new_height * $rate)/$rate, $width, $height);
-					}
-					else
-					{
-						$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
-						imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
-//						imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width * ($width/$height), $new_height * $rate, $width, $height);
-					}
-					
+					$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
+						
+					imagecopyresized($image2, $image, $x, 0, 0, 0, ($new_width * ($width/$height))/$rate, $new_height, $width, $height);
 					imagepng($image2, "files/scms/$set/test.png");
 				}
-				elseif($isHorisontal)
+//				elseif($isHorisontal)
+				else
 				{
-					$rate = $new_height / $new_width;
-//					echo $new_width.'x'.$new_height * ($height/$width);exit;
-//					echo $width.'x'.$height;exit;
-					$image2 = imagecreatetruecolor($new_width, $new_height * ($height/$width) );
-					imagefill($image2, 0, 0, $color);
 					$x = ($new_width - ($new_width * $rate) ) / 2;
-					imagecopyresized($image2, $image, $x, 0, 0, 0, $new_width * $rate, $new_height * ($height/$width), $width, $height);
+					$y = (($new_height - ($new_height * ($height/$width))/$rate)) / 2;
+					
+					imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height * ($height/$width))/$rate, $width, $height);
 					imagepng($image2, "files/scms/$set/test.png");
 				}
-				
 			}
 			
 //			imagepng($tmpImage, "files/scms/$set/test.png");
