@@ -203,6 +203,7 @@ class Resource extends BaseModel
 				$image2 = imagecreatetruecolor($new_width, $new_height );
 				imagefill($image2, 0, 0, $color);
 				
+				//Потом отдельно потестить прозрачность
 				if($isVertical)
 				{
 					$y = ($new_height - ($new_height * $rate) ) / 2;
@@ -241,7 +242,9 @@ class Resource extends BaseModel
 					{
 						if($x < 0)
 						{
-							echo 1; exit;
+//							$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
+//							$y = ............ и всё!!!!
+							imagecopyresized($image2, $image, 0, 0, 0, 0, $new_width, ($new_height / ($width/$height))*$rate, $width, $height);
 						}
 						else
 						{
