@@ -218,6 +218,7 @@ class Resource extends BaseModel
 					else
 					{
 						$y = ($new_height - ($new_height * ($height/$width))*$rate)/2;
+						// Тут правильное условие!!!!!
 						if($y < 0)
 						{
 //							imagecopyresized($image2, $image, $x, 0, 0, 0, $new_width/($rate), $new_height, $width, $height);
@@ -234,14 +235,16 @@ class Resource extends BaseModel
 				// Horisontal and cvadrat
 				else
 				{
-					//@TODO: delete x and y
-					$x = ($new_width - ($new_width * $rate) ) / 2;
+//					$x = ($new_width - ($new_width * $rate) ) / 2;
+					$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
 					$y = (($new_height - ($new_height * ($height/$width))/$rate)) / 2;
 
 					// Horisontal
 					if($new_width > $new_height)
 					{
+						//ТУТ ПРОСТО НУЖНО ПРАВИЛЬНОЕ УСЛОВИЕ (Ошибка если картинка квадратная и x < 0)
 						if($x < 0)
+//						if($width > $height)
 						{
 //							$y = ............ и всё!!!!
 							$y = ($new_height - ($new_height * ($height/$width))*$rate)/2; 
