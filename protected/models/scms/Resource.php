@@ -242,9 +242,9 @@ class Resource extends BaseModel
 					{
 						if($x < 0)
 						{
-//							$x = ($new_width - ($new_width * ($width/$height))/$rate)/2;
 //							$y = ............ и всё!!!!
-							imagecopyresized($image2, $image, 0, 0, 0, 0, $new_width, ($new_height / ($width/$height))*$rate, $width, $height);
+							$y = ($new_height - ($new_height * ($height/$width))*$rate)/2; 
+							imagecopyresized($image2, $image, 0, $y, 0, 0, $new_width, ($new_height / ($width/$height))*$rate, $width, $height);
 						}
 						else
 						{
