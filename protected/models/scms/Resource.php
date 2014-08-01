@@ -200,7 +200,8 @@ class Resource extends BaseModel
 				
 				imagefill($tmpImage, 0, 0, $color);
 				$rate = $new_width / $new_height;
-				$image2 = imagecreatetruecolor($new_width, $new_height );
+				$image2 = imagecreatetruecolor($new_width, $new_height);
+				imagesavealpha($image2, true);
 				imagefill($image2, 0, 0, $color);
 				
 				//Потом отдельно потестить прозрачность
